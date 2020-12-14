@@ -1,7 +1,20 @@
 import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+import LandingPage from './LandingPage'
+import QuizPage from './QuizPage'
+
+const App = (props) => {
+  return (
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={LandingPage} />
+          <Route exact path='/QuizPage' component={QuizPage} />
+        </Switch>
+      </BrowserRouter>
+    </div>
+  )
 }
 
 export default App
