@@ -1,28 +1,17 @@
 import React, { useState, useEffect } from 'react'
+import data from './data.json'
+const _ = require("lodash");
 
-const QuizPage = (props) => {
+const QuizPage = () => {
 
-  let quizList = [];
+  let quizList = []
+  data.sort(() => Math.random() - 0.5);
+  quizList = data.slice(0, 10)
 
-  useEffect(() => {
-  fetch('./data.json')
-  .then(response => {
-    if (response.ok) {
-      return response;
-    } else {
-      let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-      throw(error);
-    }
-  })
-  .then(response => response.json())
-  .then(body => {
-    let quizList = body.question;
-  })
-  .catch(error => console.error(`Error in fetch: ${error.message}`))
-}, [])
   return(
-    <div>{quizList}</div>
+    <div>
+    <p>{quizList[0].question}</p>
+    </div>
   )
 }
 
