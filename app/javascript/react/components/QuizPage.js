@@ -4,6 +4,8 @@ import data from './data.json'
 const QuizPage = () => {
   const [quizList, setQuizList] = useState([]);
   const [questionNumber, setQuestionNumber] = useState(0);
+  const [score, setScore] = useState(0);
+
   useEffect(() => {
     const deep = _.cloneDeep(data)
 
@@ -30,23 +32,36 @@ const QuizPage = () => {
   }
 
   else {
-    return(
-      <div>
-      <form className= 'callout'>
-        <p>{quizList[0][questionNumber].question}</p>
+    if (questionNumber === 9) {
+      return (
+        <div>
+          <p>Score for this round: {score}</p>
+          <p>Refresh the page to start again!</p>
+        </div>
+      )
+    } else {
+      return(
+        <div>
+          <p>{quizList[0][questionNumber].correct}</p>
 
-        {quizList[0][questionNumber].incorrect.map(incorrectAnswer => (
-          <li>{incorrectAnswer}</li>
-        ))}
-          <button onClick={(event) => {
-            event.preventDefault();
-            setQuestionNumber(questionNumber + 1)
-          }}>
-          Click me
-        </button>
-      </form>
-      </div>
-    );
+          {quizList[0][questionNumber].incorrect.map(incorrectAnswer => (
+            <button id={incorrectAnswer} onClick={(event) => {
+              event.preventDefault();
+              if (event.target.id === quizList[0][questionNumber].correct) {
+                setScore(score + 1)
+                alert("Correct!")
+                setQuestionNumber(questionNumber + 1)
+              }
+              else {
+                alert("Incorrect! The answer was " + quizList[0][questionNumber].correct)
+                setQuestionNumber(questionNumber + 1)
+
+              }
+            }}>{incorrectAnswer}</button>
+          ))}
+        </div>
+      );
+    }
   }
 }
 export default QuizPage
