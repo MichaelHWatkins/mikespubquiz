@@ -42,7 +42,7 @@ const QuizPage = () => {
     } else {
       return(
         <div>
-          <p>{quizList[0][questionNumber].correct}</p>
+          <p>{quizList[0][questionNumber].question}</p>
 
           {quizList[0][questionNumber].incorrect.map(incorrectAnswer => (
             <button id={incorrectAnswer} onClick={(event) => {
