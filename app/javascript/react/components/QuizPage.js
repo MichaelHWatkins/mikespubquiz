@@ -12,13 +12,13 @@ const QuizPage = () => {
     deep.sort(() => Math.random() - 0.5);
 
     const list = deep.slice(0, 10)
-      const newList = list.map((quizInfo) => {
-        quizInfo.incorrect.push(quizInfo.correct);
-        quizInfo.incorrect.sort(() => Math.random() - 0.5);
+    const newList = list.map((quizInfo) => {
+      quizInfo.incorrect.push(quizInfo.correct);
+      quizInfo.incorrect.sort(() => Math.random() - 0.5);
 
-        return quizInfo;
+      return quizInfo;
 
-      })
+    })
 
       setQuizList([...quizList, newList])
   },[])
@@ -26,7 +26,7 @@ const QuizPage = () => {
     if ( quizList.length === 0) {
     return(
       <div>
-      test
+      Loading...
       </div>
     )
   }
@@ -41,7 +41,7 @@ const QuizPage = () => {
       )
     } else {
       return(
-        <div>
+        <div className="landingPage">
           <p>{quizList[0][questionNumber].question}</p>
 
           {quizList[0][questionNumber].incorrect.map(incorrectAnswer => (
