@@ -34,7 +34,7 @@ const QuizPage = () => {
   else {
     if (questionNumber === 9) {
       return (
-        <div>
+        <div className="landingPage">
           <p>Score for this round: {score}</p>
           <p>Refresh the page to start again!</p>
         </div>
@@ -57,7 +57,7 @@ const QuizPage = () => {
                 setQuestionNumber(questionNumber + 1)
 
               }
-            }}>{incorrectAnswer}</button>
+            }}> {incorrectAnswer} </button>
           ))}
         </div>
       );
