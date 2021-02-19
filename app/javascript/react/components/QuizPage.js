@@ -26,7 +26,7 @@ const QuizPage = () => {
     if ( quizList.length === 0) {
     return(
       <div>
-      Loading...
+      Loading....
       </div>
     )
   }
